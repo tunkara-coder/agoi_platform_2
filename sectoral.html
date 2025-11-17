@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Sectoral Potential Pillar</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5>About This Pillar</h5>
+                    <p>The Sectoral Potential pillar assesses the availability and quality of natural resources, infrastructure, and economic conditions that enable green growth across key sectors.</p>
+                    
+                    <h6>Key Indicators:</h6>
+                    <ul>
+                        <li>Renewable energy potential (solar, wind, hydro, geothermal)</li>
+                        <li>Sustainable agriculture and land use</li>
+                        <li>Green infrastructure development</li>
+                        <li>Circular economy opportunities</li>
+                        <li>Green technology adoption</li>
+                    </ul>
+                    
+                    <h6>Assessment Methodology:</h6>
+                    <p>This pillar combines geospatial data analysis, resource mapping, infrastructure assessments, and sectoral economic analysis to evaluate green growth potential.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Weight in Overall Score</h6>
+                    <div class="progress mb-3">
+                        <div class="progress-bar bg-success" style="width: 30%">30%</div>
+                    </div>
+                    
+                    <h6>Top Performing Countries</h6>
+                    <ol>
+                        <li>South Africa (80%)</li>
+                        <li>Kenya (75%)</li>
+                        <li>Ethiopia (70%)</li>
+                    </ol>
+                    
+                    <a href="/calculations" class="btn btn-outline-primary btn-sm">View Detailed Methodology</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

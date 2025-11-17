@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>AGOI Dashboard</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body text-center">
+                    <h4>{{ scores|length }}</h4>
+                    <p>Countries</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success">
+                <div class="card-body text-center">
+                    <h4>{{ "%.1f"|format(pillar_avgs.overall_score * 100) }}%</h4>
+                    <p>Average Score</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body text-center">
+                    <h4>{{ current_year }}</h4>
+                    <p>Current Year</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-info">
+                <div class="card-body text-center">
+                    <h4>4</h4>
+                    <p>Pillars</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="mb-0">Country Rankings</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Country</th>
+                            <th>Tier</th>
+                            <th>Overall Score</th>
+                            <th>Policy</th>
+                            <th>Sectoral</th>
+                            <th>Finance</th>
+                            <th>Human Capital</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for score in scores %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td><a href="/country/{{ score.country_code }}">{{ score.country_name }}</a></td>
+                            <td>
+                                {% if score.tier == 'Frontrunner' %}
+                                <span class="badge bg-success">Frontrunner</span>
+                                {% elif score.tier == 'Emerging' %}
+                                <span class="badge bg-warning text-dark">Emerging</span>
+                                {% elif score.tier == 'High Potential' %}
+                                <span class="badge bg-info">High Potential</span>
+                                {% else %}
+                                <span class="badge bg-secondary">{{ score.tier or 'Not Rated' }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% set overall_percent = (score.overall_score or 0) * 100 %}
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ overall_percent }}%" aria-valuenow="{{ overall_percent }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <small>{{ "%.1f"|format(overall_percent) }}%</small>
+                            </td>
+                            <td>{{ "%.1f"|format((score.policy_score or 0) * 100) }}%</td>
+                            <td>{{ "%.1f"|format((score.sectoral_score or 0) * 100) }}%</td>
+                            <td>{{ "%.1f"|format((score.finance_score or 0) * 100) }}%</td>
+                            <td>{{ "%.1f"|format((score.human_capital_score or 0) * 100) }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

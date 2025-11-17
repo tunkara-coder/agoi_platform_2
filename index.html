@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container text-center">
+        <h1>Africa Green Opportunity Index</h1>
+        <p class="lead">Measuring green growth potential across African nations</p>
+        <a href="/dashboard" class="btn btn-light btn-lg">View Dashboard</a>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <a href="/pillar/policy" class="text-decoration-none">
+                <div class="card pillar-card">
+                    <div class="card-body text-center">
+                        <h5>Policy & Governance</h5>
+                        <p>Green policies and regulatory frameworks</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/pillar/sectoral" class="text-decoration-none">
+                <div class="card pillar-card">
+                    <div class="card-body text-center">
+                        <h5>Sectoral Potential</h5>
+                        <p>Renewable resources and infrastructure</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/pillar/finance" class="text-decoration-none">
+                <div class="card pillar-card">
+                    <div class="card-body text-center">
+                        <h5>Finance Ecosystem</h5>
+                        <p>Green finance and investment flows</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/pillar/human-capital" class="text-decoration-none">
+                <div class="card pillar-card">
+                    <div class="card-body text-center">
+                        <h5>Human Capital</h5>
+                        <p>Workforce skills and training</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

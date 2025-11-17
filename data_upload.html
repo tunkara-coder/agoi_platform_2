@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Data Upload</h1>
+    
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5>Upload CSV Data</h5>
+            <p>Upload your indicator data in CSV format.</p>
+            
+            <div style="border: 2px dashed #ccc; padding: 3rem; text-align: center; border-radius: 10px;">
+                <p>Drag and drop your CSV file here or click to browse</p>
+                <button class="btn btn-primary">Select File</button>
+            </div>
+            
+            <div class="mt-4">
+                <h6>Supported Format:</h6>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>country_code</td>
+                            <td>3-letter country code</td>
+                            <td>KEN, NGA, ZAF</td>
+                        </tr>
+                        <tr>
+                            <td>indicator_code</td>
+                            <td>AGOI indicator code</td>
+                            <td>POL_REN_TARGET</td>
+                        </tr>
+                        <tr>
+                            <td>year</td>
+                            <td>Assessment year</td>
+                            <td>2023</td>
+                        </tr>
+                        <tr>
+                            <td>value</td>
+                            <td>Numerical value</td>
+                            <td>0.75, 1500</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

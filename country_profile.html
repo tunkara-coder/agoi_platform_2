@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">{{ country.name }}</li>
+        </ol>
+    </nav>
+    
+    <h1>{{ country.name }}</h1>
+    <p class="text-muted">Region: {{ country.region }} | Code: {{ country.code }}</p>
+    
+    {% if scores %}
+    {% set latest_score = scores[0] %}
+    <div class="card mt-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Current Performance ({{ latest_score.year }})</h5>
+        </div>
+        <div class="card-body">
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <h6>Policy & Governance</h6>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: {{ (latest_score.policy_score or 0) * 100 }}%"></div>
+                    </div>
+                    <div class="mt-1">{{ ((latest_score.policy_score or 0) * 100) | round(1) }}%</div>
+                </div>
+                <div class="col-md-3">
+                    <h6>Sectoral Potential</h6>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: {{ (latest_score.sectoral_score or 0) * 100 }}%"></div>
+                    </div>
+                    <div class="mt-1">{{ ((latest_score.sectoral_score or 0) * 100) | round(1) }}%</div>
+                </div>
+                <div class="col-md-3">
+                    <h6>Finance Ecosystem</h6>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: {{ (latest_score.finance_score or 0) * 100 }}%"></div>
+                    </div>
+                    <div class="mt-1">{{ ((latest_score.finance_score or 0) * 100) | round(1) }}%</div>
+                </div>
+                <div class="col-md-3">
+                    <h6>Human Capital</h6>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: {{ (latest_score.human_capital_score or 0) * 100 }}%"></div>
+                    </div>
+                    <div class="mt-1">{{ ((latest_score.human_capital_score or 0) * 100) | round(1) }}%</div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <h3>Overall Score: {{ ((latest_score.overall_score or 0) * 100) | round(1) }}%</h3>
+                {% if latest_score.tier == 'Frontrunner' %}
+                    <span class="badge bg-success fs-5 p-2">Frontrunner</span>
+                {% elif latest_score.tier == 'Emerging' %}
+                    <span class="badge bg-warning text-dark fs-5 p-2">Emerging</span>
+                {% elif latest_score.tier == 'High Potential' %}
+                    <span class="badge bg-info fs-5 p-2">High Potential</span>
+                {% else %}
+                    <span class="badge bg-secondary fs-5 p-2">{{ latest_score.tier or 'Not Rated' }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Historical Data Table -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="mb-0">Historical Performance</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Overall Score</th>
+                            <th>Policy</th>
+                            <th>Sectoral</th>
+                            <th>Finance</th>
+                            <th>Human Capital</th>
+                            <th>Tier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for score in scores %}
+                        <tr>
+                            <td>{{ score.year }}</td>
+                            <td>
+                                <div class="progress" style="height: 15px;">
+                                    <div class="progress-bar" style="width: {{ (score.overall_score or 0) * 100 }}%"></div>
+                                </div>
+                                <small>{{ ((score.overall_score or 0) * 100) | round(1) }}%</small>
+                            </td>
+                            <td>{{ ((score.policy_score or 0) * 100) | round(1) }}%</td>
+                            <td>{{ ((score.sectoral_score or 0) * 100) | round(1) }}%</td>
+                            <td>{{ ((score.finance_score or 0) * 100) | round(1) }}%</td>
+                            <td>{{ ((score.human_capital_score or 0) * 100) | round(1) }}%</td>
+                            <td>
+                                {% if score.tier == 'Frontrunner' %}
+                                    <span class="badge bg-success">Frontrunner</span>
+                                {% elif score.tier == 'Emerging' %}
+                                    <span class="badge bg-warning text-dark">Emerging</span>
+                                {% elif score.tier == 'High Potential' %}
+                                    <span class="badge bg-info">High Potential</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{{ score.tier or 'Not Rated' }}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-warning mt-4">
+        <h5>No score data available</h5>
+        <p>There is no performance data available for {{ country.name }} at this time.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

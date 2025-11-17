@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Calculation Methodology</h1>
+    
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5>AGOI Scoring Framework</h5>
+            <p>The Africa Green Opportunity Index uses a weighted multi-pillar approach:</p>
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Pillar</th>
+                        <th>Weight</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Policy & Governance</td>
+                        <td>25%</td>
+                        <td>Quality of green policies and regulatory frameworks</td>
+                    </tr>
+                    <tr>
+                        <td>Sectoral Potential</td>
+                        <td>30%</td>
+                        <td>Availability of natural resources and infrastructure</td>
+                    </tr>
+                    <tr>
+                        <td>Finance Ecosystem</td>
+                        <td>25%</td>
+                        <td>Availability of green finance and investment</td>
+                    </tr>
+                    <tr>
+                        <td>Human Capital</td>
+                        <td>20%</td>
+                        <td>Workforce skills and inclusive participation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
